@@ -1,0 +1,118 @@
+{% extends "navbar_administracion.html" %}
+{% load static %}
+
+<!-- Conatiner CSS -->
+{% block css %}
+
+<link rel="stylesheet" href=" {% static 'libs/Datatable/CSS/dataTables.bootstrap5.css' %}">
+<link rel="stylesheet" href=" {% static 'libs/Datatable/CSS/buttons.bootstrap5.css' %}">
+<link rel="stylesheet" href=" {% static 'libs/Datatable/CSS/responsive.bootstrap5.css' %}">
+<link rel="stylesheet" href=" {% static 'css/datatable.css' %}">
+{% endblock %}
+<!-- End Conatiner CSS -->
+
+{% block content %}
+<main class="content-inside px-3 py-2">
+  
+
+    <section class="col-md-6 col-sm-12" id="graficaPieTrámites">
+      <div class="card">
+        <div class="p-2">
+          <div id="completados">
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="col-md-6 col-sm-12" id="graficaBarTrámites">
+      <div class="card">
+        <div class="p-2">
+          <div id="prueba4">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="col-md-12 col-sm-12" id="graficaBarTrámites">
+      <div class="card">
+        <div class="p-2">
+          <div id="prueba5">
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
+ 
+  {% endblock %}
+
+  <!-- Conatiner JS -->
+  {% block js%}
+  <!--Inicializar Charts-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{% static 'libs/Highcharts/code/highcharts.js' %}"></script>
+  <script src="{% static 'libs/Highcharts/code/modules/accessibility.js' %}"></script>
+  <script src="{% static 'libs/Highcharts/code/modules/exporting.js' %}"></script>
+  <script src="{% static 'libs/Highcharts/code/modules/offline-exporting.js' %}"></script>
+  <script src="{% static 'libs/Highcharts/code/modules/export-data.js' %}"></script>
+  <script src="{% static '/libs/Highcharts/graficos.js' %}"></script>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+      console.log({{ data_grafica_completados|safe }});
+      console.log({{ datos_pregrado|safe }});
+      console.log({{ datos_posgrado|safe }});
+
+      var dataSeries = {{ data_grafica_completados|safe }};
+      Highcharts.chart('completados', {
+          chart: {
+              type: 'pie'
+          },
+          title: {
+              text: 'Completados por modalidad'
+          },
+          tooltip: {
+              valueSuffix: '%'
+          },
+          subtitle: {
+              text: 'Source:<a href="https://www.mdpi.com/2072-6643/11/3/684/htm" target="_default">MDPI</a>'
+          },
+          plotOptions: {
+              series: {
+                  allowPointSelect: true,
+                  cursor: 'pointer',
+                  dataLabels: [{
+                      enabled: true,
+                      distance: 20
+                  }, {
+                      enabled: true,
+                      distance: -40,
+                      format: '{point.percentage:.1f}%',
+                      style: {
+                          fontSize: '1.2em',
+                          textOutline: 'none',
+                          opacity: 0.7
+                      },
+                      filter: {
+                          operator: '>',
+                          property: 'percentage',
+                          value: 10
+                      }
+                  }]
+              }
+          },
+          series: [{
+              name: 'Percentage',
+              colorByPoint: true,
+              data: dataSeries.map(function(point) {
+                  return {
+                      name: point.categoria,
+                      y: point.cantidad
+                  };
+              })
+          }]
+      });
+
+  });
+</script>
+{% endblock %}
+  <!-- End Conatiner JS -->

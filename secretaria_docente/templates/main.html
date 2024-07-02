@@ -1,0 +1,43 @@
+{% extends "navbar.html" %}
+{% load static %}
+
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'css/InicioSD.css' %}">
+    {% endblock %}
+
+
+              {% block content %}
+              <section class="banner">
+                <div class="slider ">
+                  <div class="slide ">
+                    <img src="{% static 'img/iniciosd.jpg' %}" alt="">
+                    <div class="container text-center">
+                      <div class="row">
+                      
+                          <div class="left-info">
+                            <div class="penetrate-blur">
+                              <h1>SD</h1>
+                            </div>
+                          </div>
+                       
+                        
+                          <div class="right-info">
+                            <h1>UHo</h1>
+                          </div>
+                       
+                      </div>
+                    </div>
+                    <div class="contenn">
+                      <h3>Secretaría Docente de la Universidad de Holguín </h3>
+                      <p>¡Bienvenida al servicio de solicitud de trámites de la Secretaría de la Universidad de Holguín!
+                         Nos complace enormemente poder ofrecerte toda la ayuda y asistencia que necesites durante tu proceso administrativo. 
+                         Estamos aquí para facilitar tus trámites y hacer que tu experiencia sea lo más fluida y eficiente posible. 
+                        No dudes en comunicarte con nosotros si tienes alguna pregunta o requieres apoyo adicional.
+                      </p>
+                    </div>
+                  </div>  
+                </div>
+              </section>
+              {% endblock %}
+              
+            

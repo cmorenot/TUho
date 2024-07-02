@@ -1,0 +1,77 @@
+{% extends "navbar_administracion.html" %}
+{% load static %}
+
+<!-- Conatiner CSS -->
+{% block css %}
+
+<link rel="stylesheet" href=" {% static 'libs/Datatable/CSS/dataTables.bootstrap5.css' %}">
+<link rel="stylesheet" href=" {% static 'libs/Datatable/CSS/buttons.bootstrap5.css' %}">
+<link rel="stylesheet" href=" {% static 'libs/Datatable/CSS/responsive.bootstrap5.css' %}">
+<link rel="stylesheet" href=" {% static 'css/datatable.css' %}">
+{% endblock %}
+<!-- End Conatiner CSS -->
+
+{% block content %}
+<main class="content-inside px-3 py-2">
+  
+    <section class="col-md-6 col-sm-12" id="graficaBarTrámites">
+      <div class="card">
+        <div class="p-2">
+          <div id="gestor">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="col-md-6 col-sm-12" id="graficaBarTrámites">
+      <div class="card">
+        <div class="p-2">
+          <div id="prueba4">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="col-md-12 col-sm-12" id="graficaBarTrámites">
+      <div class="card">
+        <div class="p-2">
+          <div id="prueba5">
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</main>
+ 
+  {% endblock %}
+
+  <!-- Conatiner JS -->
+  {% block js%}
+  <!--Inicializar Charts-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{% static 'libs/Highcharts/code/highcharts.js' %}"></script>
+  <script src="{% static 'libs/Highcharts/code/modules/accessibility.js' %}"></script>
+  <script src="{% static 'libs/Highcharts/code/modules/exporting.js' %}"></script>
+  <script src="{% static 'libs/Highcharts/code/modules/offline-exporting.js' %}"></script>
+  <script src="{% static 'libs/Highcharts/code/modules/export-data.js' %}"></script>
+  <script src="{% static '/libs/Highcharts/graficos.js' %}"></script>
+
+ <script>
+  Highcharts.chart('container', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Trámites Procesados Por Gestor y Mes'
+    },
+    xAxis: {
+        categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    },
+    yAxis: {
+        title: {
+            text: 'Cantidad de Trámites'
+        }
+    },
+    series: JSON.parse(document.getElementById('data_grafica_por_gestor_y_mes').textContent)
+});
+</script>
+{% endblock %}
+  <!-- End Conatiner JS -->

@@ -1,0 +1,34 @@
+{% extends "navbar.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/modal.css' %}">
+{% endblock %}
+
+{% block content %}
+    <form action="#" method="post">
+		{% csrf_token %}
+		<div class="modal modal-alert position-static " tabindex="-1" role="dialog" id="modalChoice">
+			<div class="modal-dialog" role="eliminart">
+				<div class="modal-content modaldelet rounded-3 shadow">
+					<div class="modal-body p-4 text-center">
+						<h3 class="mb-0 p-2 ">Eliminar</h3>
+						<p class="mb-0">Est&aacute; seguro que desea eliminar el Tr&aacute;mite seleccionado: 
+							<hr>
+							<b>Nombre y Apellidos: {{ object.nombre }} {{ object.apellidos }}<br>
+								Tipo de Trámite: {{ object.tipo_pren }} {{object.tipo_prei}} {{object.tipo_posn}} {{object.tipo_posi}}</b> 
+							<hr>
+							Esta acci&oacute;n ser&aacute; permanente.
+						</p>
+						<div class="justify-content-center flex-nowrap p-0">
+							<a href="{% url 'Tramites_List' %}" class="m-2 btn btn-primary btn-sm">  
+								Atr&aacute;s
+							</a>
+							<button type="submit" class="m-2 btn btn-primaryy btn-sm">Borrar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+{% endblock %}
